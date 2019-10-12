@@ -11,7 +11,7 @@ To learn more about automated ML, see documentation [here](https://docs.microsof
 Try the sample notebooks [here](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/automated-machine-learning).
 
 ## Prerequisites
-Azure subscription and Azure ML workspace. See instructions on how to create a workspace [here](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-portal-experiments).
+Azure subscription and Azure ML workspace. See instructions on how to create a workspace [here](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-manage-workspace).
 
 ## Creating an AzureML compute cluster
 We will do a number of actions that require a compute target to be exectuted on. We will start by creating a cluster of CPU VMs.
