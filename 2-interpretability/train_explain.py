@@ -11,6 +11,8 @@ from sklearn_pandas import DataFrameMapper
 import os
 import pandas as pd
 
+os.system('pip freeze')
+
 # +
 from azureml.core import Run, Workspace, Experiment
 # Check core SDK version number
@@ -92,10 +94,11 @@ x_train, x_test, y_train, y_test = train_test_split(attritionXData,
 # +
 # write x_test out as a pickle file for later visualization
 x_test_pkl = 'x_test.pkl'
-with open(x_test_pkl, 'wb') as file:
-    joblib.dump(value=x_test, filename=os.path.join(OUTPUT_DIR, x_test_pkl))
+
+joblib.dump(value=x_test, filename=os.path.join(OUTPUT_DIR, x_test_pkl))
 run.upload_file('x_test_ibm.pkl', os.path.join(OUTPUT_DIR, x_test_pkl))
 
+print('train model')
 # preprocess the data and fit the classification model
 clf.fit(x_train, y_train)
 model = clf.steps[-1][1]
@@ -105,8 +108,7 @@ model = clf.steps[-1][1]
 # +
 # save model for use outside the script
 model_file_name = 'log_reg.pkl'
-with open(model_file_name, 'wb') as file:
-    joblib.dump(value=clf, filename=os.path.join(OUTPUT_DIR, model_file_name))
+joblib.dump(value=clf, filename=os.path.join(OUTPUT_DIR, model_file_name))
 
 # register the model with the model management service for later use
 run.upload_file('original_model.pkl', os.path.join(OUTPUT_DIR, model_file_name))
@@ -116,6 +118,7 @@ original_model = run.register_model(model_name='amlcompute_deploy_model',
 
 
 # +
+print('create explainer')
 # create an explainer to validate or debug the model
 tabular_explainer = TabularExplainer(model,
                                      initialization_examples=x_train,
@@ -128,6 +131,7 @@ tabular_explainer = TabularExplainer(model,
 # more data (e.g. x_train) will likely lead to higher accuracy, but at a time cost
 global_explanation = tabular_explainer.explain_global(x_test)
 
+print('upload explanation')
 # uploading model explanation data for storage or visualization
 comment = 'Global explanation on classification model trained on IBM employee attrition dataset'
 client.upload_model_explanation(global_explanation, comment=comment)
@@ -139,4 +143,5 @@ client.upload_model_explanation(global_explanation, comment=comment)
 if not is_remote_run:
     run.complete()
 
+print('completed')
 
