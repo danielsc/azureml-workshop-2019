@@ -1,7 +1,8 @@
-# Copyright (c) Microsoft. All rights reserved.
+# ### Copyright (c) Microsoft. All rights reserved.
 # Licensed under the MIT license.
 
-from sklearn.externals import joblib
+import joblib
+from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
@@ -10,17 +11,34 @@ from sklearn_pandas import DataFrameMapper
 import os
 import pandas as pd
 
-from azureml.core import Run, Workspace
-from azureml.explain.model.tabular_explainer import TabularExplainer
-from azureml.contrib.explain.model.explanation.explanation_client import ExplanationClient
+# +
+from azureml.core import Run, Workspace, Experiment
+# Check core SDK version number
+import azureml.core
 
-os.makedirs('./outputs', exist_ok=True)
+print("SDK version:", azureml.core.VERSION)
+# -
 
+OUTPUT_DIR='./outputs'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# +
 print('load dataset')
-#ws = Workspace.from_config()
+
 run = Run.get_context()
-print(run.input_datasets)
-attritionData = run.input_datasets['attrition'].to_pandas_dataframe()
+if(run.id.startswith("OfflineRun")):
+    ws = Workspace.from_config()
+    experiment = Experiment(ws, "Train-Explain-Interactive")
+    is_remote_run = False
+    run = experiment.start_logging(outputs=None, snapshot_directory=".")
+    attritionData = ws.datasets['IBM-Employee-Attrition'].to_pandas_dataframe()
+else:
+    ws = run.experiment.workspace
+    attritionData = run.input_datasets['attrition'].to_pandas_dataframe()
+    is_remote_run = True
+
+print(attritionData.head())
+# -
 
 # Dropping Employee count as all values are 1 and hence attrition is independent of this feature
 attritionData = attritionData.drop(['EmployeeCount'], axis=1)
@@ -47,7 +65,7 @@ numerical = attritionXData.columns.difference(categorical)
 numeric_transformations = [([f], Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='median')),
     ('scaler', StandardScaler())])) for f in numerical]
-    
+
 categorical_transformations = [([f], OneHotEncoder(handle_unknown='ignore', sparse=False)) for f in categorical]
 
 transformations = numeric_transformations + categorical_transformations
@@ -57,65 +75,68 @@ transformations = numeric_transformations + categorical_transformations
 clf = Pipeline(steps=[('preprocessor', DataFrameMapper(transformations)),
                       ('classifier', LogisticRegression(solver='lbfgs'))])
 
-print('train model')
+# +
+from interpret.ext.blackbox import TabularExplainer
+from azureml.contrib.interpret.explanation.explanation_client import ExplanationClient
+# create an explanation client to store the explanation (contrib API)
+client = ExplanationClient.from_run(run)
+
 # Split data into train and test
-from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(attritionXData, 
-                                                    target, 
-                                                    test_size = 0.2,
+x_train, x_test, y_train, y_test = train_test_split(attritionXData,
+                                                    target,
+                                                    test_size=0.2,
                                                     random_state=0,
                                                     stratify=target)
 
-print('save test set')
-# write x_text out as a pickle file for later visualization
-x_test_pkl = 'x_test_ibm.pkl'
+
+# +
+# write x_test out as a pickle file for later visualization
+x_test_pkl = 'x_test.pkl'
 with open(x_test_pkl, 'wb') as file:
-    joblib.dump(value=x_test, filename=os.path.join('./outputs/', x_test_pkl))
+    joblib.dump(value=x_test, filename=os.path.join(OUTPUT_DIR, x_test_pkl))
+run.upload_file('x_test_ibm.pkl', os.path.join(OUTPUT_DIR, x_test_pkl))
 
 # preprocess the data and fit the classification model
 clf.fit(x_train, y_train)
 model = clf.steps[-1][1]
 
+
+
+# +
+# save model for use outside the script
 model_file_name = 'log_reg.pkl'
-
-# save model in the outputs folder so it automatically get uploaded
 with open(model_file_name, 'wb') as file:
-    joblib.dump(value=clf, filename=os.path.join('./outputs/',
-                                                 model_file_name))
+    joblib.dump(value=clf, filename=os.path.join(OUTPUT_DIR, model_file_name))
 
-print('run explainer')
-# Explain predictions on your local machine
-tabular_explainer = TabularExplainer(model, initialization_examples=x_train, features=attritionXData.columns, classes=["Not leaving", "leaving"], transformations=transformations)
+# register the model with the model management service for later use
+run.upload_file('original_model.pkl', os.path.join(OUTPUT_DIR, model_file_name))
+original_model = run.register_model(model_name='amlcompute_deploy_model',
+                                    model_path='original_model.pkl')
 
-# Explain overall model predictions (global explanation)
-# Passing in test dataset for evaluation examples - note it must be a representative sample of the original data
-# x_train can be passed as well, but with more examples explanations it will
-# take longer although they may be more accurate
+
+
+# +
+# create an explainer to validate or debug the model
+tabular_explainer = TabularExplainer(model,
+                                     initialization_examples=x_train,
+                                     features=attritionXData.columns,
+                                     classes=["Not leaving", "leaving"],
+                                     transformations=transformations)
+
+# explain overall model predictions (global explanation)
+# passing in test dataset for evaluation examples - note it must be a representative sample of the original data
+# more data (e.g. x_train) will likely lead to higher accuracy, but at a time cost
 global_explanation = tabular_explainer.explain_global(x_test)
 
-# Uploading model explanation data for storage or visualization in webUX
-# The explanation can then be downloaded on any compute
+# uploading model explanation data for storage or visualization
 comment = 'Global explanation on classification model trained on IBM employee attrition dataset'
-
-print('get scoring explainer')
-# ScoringExplainer
-scoring_explainer = tabular_explainer.create_scoring_explainer(x_test)
-# Pickle scoring explainer locally
-scoring_explainer_path = scoring_explainer.save('scoring_explainer_deploy')
-
-print('get run')
-run = Run.get_context()
-client = ExplanationClient.from_run(run)
-print('upload explainer')
 client.upload_model_explanation(global_explanation, comment=comment)
-# upload x_test, pickled above
-print('upload test set')
-run.upload_file('x_test_ibm.pkl', os.path.join('./outputs/', x_test_pkl))
 
-# Register original model
-run.upload_file('original_model.pkl', os.path.join('./outputs/', model_file_name))
-original_model = run.register_model(model_name='IBM_attrition_model', model_path='original_model.pkl')
+# -
 
-# Register scoring explainer
-run.upload_file('IBM_attrition_explainer.pkl', scoring_explainer_path)
-scoring_explainer_model = run.register_model(model_name='IBM_attrition_explainer', model_path='IBM_attrition_explainer.pkl')
+
+
+if not is_remote_run:
+    run.complete()
+
+
