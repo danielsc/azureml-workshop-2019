@@ -1,0 +1,12 @@
+
+name: project_environment
+dependencies:
+- python=3.6.2
+
+- pip:
+  - sklearn-pandas
+  - azureml-defaults
+  - azureml-core
+  - inference-schema[numpy-support]
+- scikit-learn
+- pandas
