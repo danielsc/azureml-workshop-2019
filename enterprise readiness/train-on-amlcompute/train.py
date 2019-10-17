@@ -16,10 +16,18 @@ from azureml.core import Run
 # from azureml.contrib.explain.model.tabular_explainer import TabularExplainer
 # from azureml.contrib.explain.model.explanation.explanation_client import ExplanationClient
 
-os.makedirs('./outputs', exist_ok=True)
+# os.makedirs('./outputs', exist_ok=True)
 
 # Get the IBM employee attrition dataset
-attritionData = pd.read_csv('./WA_Fn-UseC_-HR-Employee-Attrition.csv')
+# attritionData = pd.read_csv('./WA_Fn-UseC_-HR-Employee-Attrition.csv')
+
+os.makedirs('./outputs', exist_ok=True)
+
+print('load dataset')
+#ws = Workspace.from_config()
+run = Run.get_context()
+print(run.input_datasets)
+attritionData = run.input_datasets['attrition'].to_pandas_dataframe()
 
 # Dropping Employee count as all values are 1 and hence attrition is independent of this feature
 attritionData = attritionData.drop(['EmployeeCount'], axis=1)
@@ -30,11 +38,15 @@ attritionData = attritionData.drop(['Over18'], axis=1)
 attritionData = attritionData.drop(['StandardHours'], axis=1)
 
 # Converting target variables from string to numerical values
-target_map = {'Yes': 1, 'No': 0}
-attritionData["Attrition_numerical"] = attritionData["Attrition"].apply(lambda x: target_map[x])
-target = attritionData["Attrition_numerical"]
+# target_map = {'Yes': 1, 'No': 0}
+# attritionData["Attrition_numerical"] = attritionData["Attrition"].apply(lambda x: target_map[x])
+# target = attritionData["Attrition_numerical"]
 
-attritionXData = attritionData.drop(['Attrition_numerical', 'Attrition'], axis=1)
+#attritionXData = attritionData.drop(['Attrition_numerical', 'Attrition'], axis=1)
+
+target = attritionData["Attrition"]
+
+attritionXData = attritionData.drop(['Attrition'], axis=1)
 
 # Creating dummy columns for each categorical feature
 categorical = []
