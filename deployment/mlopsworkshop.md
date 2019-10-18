@@ -1,3 +1,23 @@
+Import the workshop repo to Azure DevOps
+========================================
+Go to your Azure DevOps project, into the Repos area.
+Click on the Git repo dropdown at the top of the page and then on "Import Repository".
+
+Under clone URL, you can put https://github.com/danielsc/azureml-workshop-2019.git
+
+Next, let's connect your ML workspace to Azure DevOps.
+
+Connect your ML workspace to a DevOps project
+=============================================
+
+
+This workshop leverages the **Azure Machine Learning** extension that should be installed in your organization from the [marketplace](https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.vss-services-azureml).
+
+In order to set up automated training and deployment, you need to create a service connection to your ML workspace. To get there, go to your Azure DevOps project settings page (by clicking on the cog wheel to the bottom left of the screen), and then click on **Service connections** under the **Pipelines** section:
+
+**Note:** Creating service connection using Azure Machine Learning extension requires 'Owner' or 'User Access Administrator' permissions on the Workspace.
+
+Go to the new **Releases Pipelines** section, and click new to create a new release pipeline. A first stage is automatically created and choose **start with an Empty job**. Name the stage **QA (ACI)** and add a single task to the job **Azure ML Model Deploy**. Make sure that the Agent Specification is ubuntu-16.04 under the Agent Job: 
 
 Automating Training
 ===================
@@ -19,23 +39,21 @@ format such as YML. Here is an example Azure ML pipeline YML file which
 turns the same code you ran earlier into a repeatable pipeline:
 
 ```
-pipeline:
-name: SamplePipelineForTraining
-default\_compute: cpu
-steps:
-TrainStep:
-python\_script\_step:
-name: "PythonScriptStep"
-script\_name: "train\_explain.py"
-allow\_reuse: True
-source\_directory: "."
-runconfig: 'train.runconfig'
-outputs:
-result:
-destination: Output
-datastore: workspaceblobstore
-type: mount
-
+   pipeline:
+       name: SamplePipelineForTraining
+       steps:
+           TrainStep:
+               python_script_step:
+                   name: "PythonScriptStep"
+                   script_name: "train_explain.py"
+                   allow_reuse: True
+                   source_directory: "."
+               runconfig: 'train.runconfig'
+               outputs:
+                   result:
+                       destination: Output
+                       datastore: workspaceblobstore
+                       type: mount
 ```
 
 You’ll note this example looks similar to the logic expressed in the
