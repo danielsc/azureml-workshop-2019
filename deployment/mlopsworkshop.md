@@ -75,7 +75,7 @@ You can run a published pipeline from the SDK / CLI / UI.
 Published pipelines can be found in the Endpoints area – click into
 Pipeline Endpoints.
 
-![](media/media/image1.png){width="6.5in"
+![](media/image1.png){width="6.5in"
 height="5.436804461942257in"}exp
 
 Schedule Experiments to Run Whenever Code is Checked in to Git
@@ -89,16 +89,16 @@ experiment run as a repeatable pipeline.
 To create a DevOps pipeline, navigate to the Pipelines area and click
 “new pipeline” (top right)
 
-![](media/media/image2.png){width="6.5in" height="3.0083333333333333in"}
+![](media/image2.png){width="6.5in" height="3.0083333333333333in"}
 
 Select your repository & then select “Existing Azure Pipelines YML file”
 
-![](media/media/image3.png){width="4.072319553805774in"
+![](media/image3.png){width="4.072319553805774in"
 height="2.405540244969379in"}
 
-![](media/media/image4.png){width="4.0in" height="2.977350174978128in"}
+![](media/image4.png){width="4.0in" height="2.977350174978128in"}
 
-![](media/media/image5.png){width="3.371811023622047in"
+![](media/image5.png){width="3.371811023622047in"
 height="3.270945975503062in"}
 
 Once this is set up, you can hit “Run” on the pipeline, which will go
@@ -128,56 +128,56 @@ Learning + Azure DevOps to deploy a model as a REST API.
 Import github repo
 ==================
 
-![](media/media/image6.png){width="4.708990594925634in" height="4.010976596675415in"}
+![](media/image6.png){width="4.708990594925634in" height="4.010976596675415in"}
 =====================================================================================
 
 Create new release pipeline
 ===========================
 
-![](media/media/image7.png){width="5.0739501312335955in"
+![](media/image7.png){width="5.0739501312335955in"
 height="1.9791666666666667in"}
 
 Add code artifact
 =================
 
-![](media/media/image8.png){width="4.756898512685915in"
+![](media/image8.png){width="4.756898512685915in"
 height="5.230555555555555in"}
 
 Add model artifact
 ==================
 
-![](media/media/image9.png){width="4.537798556430446in"
+![](media/image9.png){width="4.537798556430446in"
 height="3.7708333333333335in"}
 
 Add deploy task
 ===============
 
-![](media/media/image10.png){width="6.5in" height="2.441666666666667in"}
+![](media/image10.png){width="6.5in" height="2.441666666666667in"}
 
 Configure deploy task
 =====================
 
-![](media/media/image11.png){width="6.5in"
+![](media/image11.png){width="6.5in"
 height="5.0055555555555555in"}
 
 Clone to PROD stage
 ===================
 
-![](media/media/image12.png){width="4.781917104111986in"
+![](media/image12.png){width="4.781917104111986in"
 height="3.427561242344707in"}
 
 Configure gates
 ===============
 
-![](media/media/image13.png){width="6.5in" height="4.752777777777778in"}
+![](media/image13.png){width="6.5in" height="4.752777777777778in"}
 
 Change name of PROD service
 ===========================
 
-![](media/media/image14.png){width="6.5in" height="3.857638888888889in"}
+![](media/image14.png){width="6.5in" height="3.857638888888889in"}
 
 Create release!
 ===============
 
-![](media/media/image15.png){width="2.906655730533683in"
+![](media/image15.png){width="2.906655730533683in"
 height="6.209199475065617in"}
