@@ -8,6 +8,7 @@ dependencies:
   - azureml-defaults
   - azureml-core
   - azureml-telemetry
-  - inference-schema[numpy-support]
+  - azureml-contrib-explain-model
+  - azureml-explain-model
 - scikit-learn
 - pandas

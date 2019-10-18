@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+variables: { 
+  mlWorkspaceConnection: 'build-demo' ,
+  mlWorkspaceName: 'build-2019-demo',
+  resourceGroupName: 'scottgu-all-hands'
+  }
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: AzureCLI@1
+  displayName: 'Install the CLI'
+  inputs:
+    azureSubscription: $(mlWorkspaceConnection)
+    scriptLocation: inlineScript
+    inlineScript: 'az extension add -n azure-cli-ml'
+
+- task: AzureCLI@1
+  displayName: 'Attach folder to workspace'
+  inputs:
+    azureSubscription: $(mlWorkspaceConnection)
+    scriptLocation: inlineScript
+    inlineScript: 'az ml folder attach -w $(mlWorkspaceName) -g $(resourceGroupName)'
+    workingDirectory: 'deployment'
+
+
+- task: AzureCLI@1
+  displayName: 'Create ML pipeline'
+  inputs:
+    azureSubscription: $(mlWorkspaceConnection)
+    scriptLocation: inlineScript
+    inlineScript: 'az ml pipeline create --name trainattrition -y training-ml-pipeline.yml'
+    workingDirectory: 'deployment'
+
+- task: AzureCLI@1
+  displayName: 'Submit script run'
+  inputs:
+    azureSubscription: $(mlWorkspaceConnection)
+    scriptLocation: inlineScript
+    inlineScript: 'az ml run submit-script -c train -e test train_explain.py'
+    workingDirectory: 'deployment'
