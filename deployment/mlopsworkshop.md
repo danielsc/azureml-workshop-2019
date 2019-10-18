@@ -1,10 +1,3 @@
-Git repo:
-<https://aidemos.visualstudio.com/MLOps/_git/azureml-workshop-2019?path=%2Fazure-pipelines.yml&version=GBmaster>\
-CI pipeline:
-<https://aidemos.visualstudio.com/MLOps/_build?definitionId=121&_a=summary>
-
-CD pipeline:
-<https://aidemos.visualstudio.com/MLOps/_release?_a=releases&view=mine&definitionId=4>
 
 Automating Training
 ===================
@@ -25,37 +18,25 @@ Automation is easier to create and manage when you use a declarative
 format such as YML. Here is an example Azure ML pipeline YML file which
 turns the same code you ran earlier into a repeatable pipeline:
 
+```
 pipeline:
-
 name: SamplePipelineForTraining
-
 default\_compute: cpu
-
 steps:
-
 TrainStep:
-
 python\_script\_step:
-
 name: "PythonScriptStep"
-
 script\_name: "train\_explain.py"
-
 allow\_reuse: True
-
 source\_directory: "."
-
 runconfig: 'train.runconfig'
-
 outputs:
-
 result:
-
 destination: Output
-
 datastore: workspaceblobstore
-
 type: mount
+
+```
 
 You’ll note this example looks similar to the logic expressed in the
 Jupyter notebook, but expressed in an easier to parse and compare
@@ -75,8 +56,7 @@ You can run a published pipeline from the SDK / CLI / UI.
 Published pipelines can be found in the Endpoints area – click into
 Pipeline Endpoints.
 
-![](media/image1.png){width="6.5in"
-height="5.436804461942257in"}exp
+![](media/image1.png)
 
 Schedule Experiments to Run Whenever Code is Checked in to Git
 ==============================================================
@@ -89,17 +69,14 @@ experiment run as a repeatable pipeline.
 To create a DevOps pipeline, navigate to the Pipelines area and click
 “new pipeline” (top right)
 
-![](media/image2.png){width="6.5in" height="3.0083333333333333in"}
+![](media/image2.png)
 
 Select your repository & then select “Existing Azure Pipelines YML file”
 
-![](media/image3.png){width="4.072319553805774in"
-height="2.405540244969379in"}
+![](media/image3.png)
 
-![](media/image4.png){width="4.0in" height="2.977350174978128in"}
-
-![](media/image5.png){width="3.371811023622047in"
-height="3.270945975503062in"}
+![](media/image4.png)
+![](media/image5.png)
 
 Once this is set up, you can hit “Run” on the pipeline, which will go
 execute your experiment.
@@ -128,20 +105,18 @@ Learning + Azure DevOps to deploy a model as a REST API.
 Import github repo
 ==================
 
-![](media/image6.png){width="4.708990594925634in" height="4.010976596675415in"}
+![](media/image6.png)
 =====================================================================================
 
 Create new release pipeline
 ===========================
 
-![](media/image7.png){width="5.0739501312335955in"
-height="1.9791666666666667in"}
+![](media/image7.png)
 
 Add code artifact
 =================
 
-![](media/image8.png){width="4.756898512685915in"
-height="5.230555555555555in"}
+![](media/image8.png)
 
 Add model artifact
 ==================
@@ -152,32 +127,29 @@ height="3.7708333333333335in"}
 Add deploy task
 ===============
 
-![](media/image10.png){width="6.5in" height="2.441666666666667in"}
+![](media/image10.png)
 
 Configure deploy task
 =====================
 
-![](media/image11.png){width="6.5in"
-height="5.0055555555555555in"}
+![](media/image11.png)
 
 Clone to PROD stage
 ===================
 
-![](media/image12.png){width="4.781917104111986in"
-height="3.427561242344707in"}
+![](media/image12.png)
 
 Configure gates
 ===============
 
-![](media/image13.png){width="6.5in" height="4.752777777777778in"}
+![](media/image13.png)
 
 Change name of PROD service
 ===========================
 
-![](media/image14.png){width="6.5in" height="3.857638888888889in"}
+![](media/image14.png)
 
 Create release!
 ===============
 
-![](media/image15.png){width="2.906655730533683in"
-height="6.209199475065617in"}
+![](media/image15.png)
