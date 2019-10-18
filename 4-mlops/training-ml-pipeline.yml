@@ -1,0 +1,16 @@
+   pipeline:
+       name: SamplePipelineForTraining
+       default_compute: cpu
+       steps:
+           TrainStep:
+               python_script_step:
+                   name: "PythonScriptStep"
+                   script_name: "train_explain.py"
+                   allow_reuse: True
+                   source_directory: "."
+               runconfig: 'train.runconfig'
+               outputs:
+                   result:
+                       destination: Output
+                       datastore: workspaceblobstore
+                       type: mount
