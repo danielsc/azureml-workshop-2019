@@ -6,7 +6,7 @@ library(jsonlite)
 init <- function()
 {
   model_path <- Sys.getenv("AZUREML_MODEL_DIR")
-  model <- readRDS(file.path("model.rds"))
+  model <- readRDS(file.path(model_path,"model.rds"))
   message("model is loaded")
   
   function(data)

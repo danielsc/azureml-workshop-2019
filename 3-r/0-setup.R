@@ -1,5 +1,8 @@
 # +
 ## Installing prerequisites for the R part of the workshop
+# please run this script with
+#
+#     sudo Rscript 0-setup.R
 # -
 
 # install azureml sdk for R

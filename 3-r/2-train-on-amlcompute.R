@@ -41,4 +41,4 @@ metrics <- get_run_metrics(run)
 metrics
 
 # delete cluster
-delete_compute(compute_target)
+# delete_compute(compute_target)

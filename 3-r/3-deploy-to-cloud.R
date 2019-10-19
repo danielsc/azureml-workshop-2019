@@ -27,6 +27,7 @@ service <- deploy_model(ws,
                         inference_config, 
                         deployment_config)
 wait_for_deployment(service, show_output = TRUE)
+cat(service$get_logs())
 
 # If you encounter any issue in deploying the webservice, please visit
 # https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-troubleshoot-deployment
@@ -48,4 +49,4 @@ sample
 predicted_val <- invoke_webservice(service, toJSON(sample))
 predicted_val
 
-cat(service$get_logs())
+
