@@ -3,12 +3,9 @@ dependencies:
 - python=3.6.2
 
 - pip:
-  - --extra-index-url https://pypi.python.org/simple
   - sklearn-pandas
   - azureml-defaults
   - azureml-core
-  - azureml-telemetry
-  - azureml-contrib-explain-model
-  - azureml-explain-model
+  - inference-schema[numpy-support]
 - scikit-learn
 - pandas
