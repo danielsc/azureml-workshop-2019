@@ -8,7 +8,7 @@ install.packages("remotes", repos = "http://cran.rstudio.com")
 remotes::install_github('https://github.com/Azure/azureml-sdk-for-r')
 
 # other stuff used
-install.packages(c('data.table'))
+install.packages(c('data.table', 'caret','kernlab','e1071'))
 
 
 
