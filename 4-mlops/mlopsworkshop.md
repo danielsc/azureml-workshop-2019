@@ -26,6 +26,8 @@ This is how your service connection looks like. Make sure to pick your resource 
 Automating Training
 ===================
 
+Before you start please make sure to change the _target_ parameter in 4-mlops/aml_config/train.runconfig file to the AML compute cluster name that you would have created in your AML workspace. This compute cluster will be used by the Azure pipelines to run the jobs.
+
 The first phase of bringing your ML workflow to production is being able
 to reproduce and automate the model training process.
 
