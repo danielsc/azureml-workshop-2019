@@ -3,11 +3,12 @@
 
 library("azuremlsdk")
 library("jsonlite")
+library("data.table")
 
 ws <- load_workspace_from_config()
 
 # register the model
-model <- register_model(ws, model_path = "outputs/model.rds", model_name = "attrition-r")
+model <- register_model(ws, model_path = "outputs", model_name = "attrition-r")
 r_env <- r_environment(name = "r_env", cran_packages = c("caret", "optparse", "e1071", "kernlab"))
 
 # create inference config
@@ -46,7 +47,10 @@ sample_y = sample$Attrition
 sample[, Attrition := NULL]
 sample
 
-predicted_val <- invoke_webservice(service, toJSON(sample))
+# get service from the workspace to refresh the object
+service = ws$webservices$attritionr
+
+predicted_val <- fromJSON(invoke_webservice(service, toJSON(sample)))
 predicted_val
 
 

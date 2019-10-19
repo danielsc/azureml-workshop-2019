@@ -6,7 +6,9 @@ library(jsonlite)
 init <- function()
 {
   model_path <- Sys.getenv("AZUREML_MODEL_DIR")
-  model <- readRDS(file.path(model_path,"model.rds"))
+  print(list.files(path = model_path, recursive = TRUE))
+  
+  model <- readRDS(file.path(model_path,"outputs/model.rds"))
   message("model is loaded")
   
   function(data)
@@ -14,6 +16,7 @@ init <- function()
     record <- as.data.frame(fromJSON(data))
     prediction <- predict(model, record)
     result <- as.character(prediction)
-    toJSON(result)
+    jsonResult = toJSON(result)
+    jsonResult
   }
 }
