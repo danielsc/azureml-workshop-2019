@@ -22,7 +22,7 @@ Datasets enable:
 1. Click on 'Create dataset' and choose 'From local files'. 
 ![](from_local_files.png)
 
-1. Click 'Browse', choose the file you had downloaded and tnen click 'Done' to complete the creation of the new dataset. Make sure to leave the Type set to Tabular.
+1. Click 'Browse', choose the file you had downloaded, name the dataset **'IBM-Employee-Attrition'**, and then click 'Done' to complete the creation of the new dataset. Make sure to leave the Type set to Tabular.
 ![](upload.png)
 
 ## Generating a Profile
