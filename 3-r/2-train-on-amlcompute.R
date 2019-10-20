@@ -9,7 +9,7 @@ ds <- get_default_datastore(ws)
 # upload attrition data set to the datastore
 upload_files_to_datastore(ds,
                           list("../data/IBM-Employee-Attrition.csv"),
-                          target_path = 'attriton',
+                          target_path = 'attrition',
                           overwrite = TRUE)
 
 # create aml compute

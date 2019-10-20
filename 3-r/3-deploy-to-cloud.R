@@ -50,7 +50,7 @@ sample
 # get service from the workspace to refresh the object
 service = ws$webservices$attritionr
 
-predicted_val <- fromJSON(invoke_webservice(service, toJSON(sample)))
+predicted_val <- invoke_webservice(service, toJSON(sample))
 predicted_val
 
 

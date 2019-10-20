@@ -53,7 +53,7 @@ server <- function(input, output) {
     } else {
       sample = all_data[input$table_rows_selected]
       sample$Attrition = NULL
-      result = fromJSON(invoke_webservice(service, toJSON(sample)))
+      result = invoke_webservice(service, toJSON(sample))
       result
     }
   })
