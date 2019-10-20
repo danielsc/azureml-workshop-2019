@@ -2,9 +2,15 @@
 
 The AzureML studio allows the user to manage their dataset and datastores directly inside the portal. 
 
-A Dataset is a resource for exploring, transforming and managing data in Azure Machine Learning.
+A Dataset is a resource for exploring, transforming and managing data in Azure Machine Learning. 
+Datasets enable:
 
-You can explore your data with summary statistics and transform it using intelligent transforms. When you are ready to use the data for training, you can save the Dataset to your AzureML workspace to get versioning and reproducibility capabilities.
+- Easy access to data: without worrying about connection strings or data paths. Only keep a single copy of data in the storage service of your choice.
+
+- Training with big data: seamless integration with Azure Machine Learning features like labelling, training products and pipelines. Users can share and reuse datasets in various experiments.
+
+- Tracking data usage: Azure ML automatically tracks which version of the dataset was used for the ML experiment and produced which model.
+
 
 ## Uploading a Dataset to AzureML studio
 
