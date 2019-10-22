@@ -7,7 +7,7 @@
                    script_name: "train_explain.py"
                    allow_reuse: True
                    source_directory: "."
-               runconfig: 'train.runconfig'
+               runconfig: 'aml_config/train.runconfig'
                outputs:
                    result:
                        destination: Output
