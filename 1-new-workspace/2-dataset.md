@@ -30,13 +30,13 @@ Click on 'Create dataset' and choose 'From local files'. Name the dataset '**IBM
 1. Finally, in the "Confirm Details" section, select "Profile this dataset after creation" and specify the 'cpu-cluster' that you previously created as the compute to use for profiling.
 ![](create_dataset.png)
 
-## Generating a Profile
+## Explore the dataset
 
 1. Now, click on the newly created dataset and click 'Explore'. Here you can see the fields of the Tabular dataset.
 ![](dataset_explore.png)
 
-1. To get more details (in particulare for larger datasets), click 'Generate profile', select the cluster you created and then click 'Generate' to generate profile information for this dataset. This will take little while, since the cluster needs to spin up a node, so we will move to the next task and come back to this later.
-![](generate_profile.png)
+1. To view the profile of the dataset we generated in the previous step, click the "Profile" tab. If you want to regenerate a profile (or you created the dataset without selecting the profile option), you can  click "Generate profile" and select a cluster to generate profile information for the dataset.
+![](view_profile.png)
 
 
 For more information on datasets, see the how-to for more information on creating and using Datasets. https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-register-datasets
