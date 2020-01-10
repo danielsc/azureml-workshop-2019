@@ -19,19 +19,24 @@ Datasets enable:
 1. Navigate to the left pane of your workspace. Select Datasets under the Assets section. 
 ![](datasets.png)
 
-1. Click on 'Create dataset' and choose 'From local files'. 
+Click on 'Create dataset' and choose 'From local files'. Name the dataset '**IBM-Employee-Attrition**' and then click 'Next'. Make sure to leave the dataset type as Tabular.
 ![](from_local_files.png)
 
-1. Click 'Browse', choose the file you had downloaded, name the dataset **'IBM-Employee-Attrition'**, and then click 'Done' to complete the creation of the new dataset. Make sure to leave the Type set to Tabular.
+1. Click 'Browse', choose the file you had downloaded, and click 'Next' to create the dataset in the workspace's default Blob storage.
 ![](upload.png)
 
-## Generating a Profile
+1. Click 'Next' through the following "Settings and preview" and "Schema" sections to verify that everything looks correct.
+
+1. Finally, in the "Confirm Details" section, select "Profile this dataset after creation" and specify the 'cpu-cluster' that you previously created as the compute to use for profiling.
+![](create_dataset.png)
+
+## Explore the dataset
 
 1. Now, click on the newly created dataset and click 'Explore'. Here you can see the fields of the Tabular dataset.
 ![](dataset_explore.png)
 
-1. To get more details (in particulare for larger datasets), click 'Generate profile', select the cluster you created and then click 'Generate' to generate profile information for this dataset. This will take little while, since the cluster needs to spin up a node, so we will move to the next task and come back to this later.
-![](generate_profile.png)
+1. To view the profile of the dataset we generated in the previous step, click the "Profile" tab. If you want to regenerate a profile (or you created the dataset without selecting the profile option), you can  click "Generate profile" and select a cluster to generate profile information for the dataset.
+![](view_profile.png)
 
 
 For more information on datasets, see the how-to for more information on creating and using Datasets. https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-register-datasets
