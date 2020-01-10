@@ -19,11 +19,16 @@ Datasets enable:
 1. Navigate to the left pane of your workspace. Select Datasets under the Assets section. 
 ![](datasets.png)
 
-1. Click on 'Create dataset' and choose 'From local files'. 
+1. Click on 'Create dataset' and choose 'From local files'. Name the dataset **'IBM-Employee-Attrition'** and then click 'Next'. Make sure to leave the dataset type as Tabular.
 ![](from_local_files.png)
 
-1. Click 'Browse', choose the file you had downloaded, name the dataset **'IBM-Employee-Attrition'**, and then click 'Done' to complete the creation of the new dataset. Make sure to leave the Type set to Tabular.
+1. Click 'Browse', choose the file you had downloaded, and then click 'Next' to create the dataset in the workspace's default Blob storage.
+and then click 'Done' to complete the creation of the new dataset. Make sure to leave the Type set to Tabular.
 ![](upload.png)
+
+1. Click 'Next' through the following "Settings and preview" and "Schema" sections to verify that everything looks correct.
+
+1. Finally, in the "Confirm Details" section, select "Profile this dataset after creation" and specify the 'cpu-cluster' that you previously created as the compute to use for profiling.
 
 ## Generating a Profile
 
