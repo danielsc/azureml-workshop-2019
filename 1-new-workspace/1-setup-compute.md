@@ -6,7 +6,7 @@ To run through this workshop, you will need an Azure subscription and an Azure M
 ## Creating an AzureML compute cluster
 We will do a number of actions that require a compute target to be exectuted on. We will start by creating a cluster of CPU VMs.
 
-1. Navigate to 'Compute' -> 'Training Clusters' in the "Manage" section and click 'New'.
+1. Navigate to 'Compute' > 'Training Clusters' in the "Manage" section and click 'New'.
 
 1. Call the cluster 'cpu-cluster'.
     - For machine size choose 'Standard_D2_v2' (that is an inexpensive general purpose VM size at about $0.14/hour). 
