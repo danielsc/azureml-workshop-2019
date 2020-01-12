@@ -13,7 +13,7 @@ Anyone who wants a comprehensive E2E understanding of Azure ML.
 - **9-9:30: Intro (run through Azure ML quick pitch / value prop)** 
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-azure-machine-learning-architecture
 
-- **9:30-1030: Module 1, infra setup, ARM, workspace setup, computes, datastores, training**
+- **9:30-1030: Module 1, infra setup, ARM, workspace setup, computes, datastores, setup**
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-manage-workspace
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-configure-environment
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-1st-experiment-sdk-setup
@@ -29,6 +29,7 @@ https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-machine-l
 - https://github.com/danielsc/azureml-workshop-2019/blob/master/1-new-workspace/3-automl.md
 - https://github.com/danielsc/azureml-workshop-2019/blob/master/2-interpretability/2-explain-model-on-amlcompute.ipynb
 
+**Stretch Goal for Module 2: Get interpretability working on the scikit-learn training job.**
 
 - **12:30-1: Lunch**
 
@@ -41,6 +42,8 @@ https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-machine-l
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-pipeline-batch-scoring-classification
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-deploy-models-with-aml
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-train-deploy-model-cli
+
+**Stretch Goal for Module 3 - Set up automated training and deployment on a schedule.**
 
 - **4-5: Module 4, Enterprise Readiness**
 - Azure Monitor https://docs.microsoft.com/en-us/azure/machine-learning/service/monitor-azure-machine-learning
