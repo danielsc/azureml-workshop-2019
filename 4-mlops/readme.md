@@ -7,6 +7,7 @@
 
 ## Tutorials for MLOps
 - https://github.com/danielsc/azureml-workshop-2019/blob/master/4-mlops/deploy-attrition-model.ipynb
+- https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/deployment/deploy-to-cloud/model-register-and-deploy.ipynb
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-pipeline-batch-scoring-classification
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-deploy-models-with-aml
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-train-deploy-model-cli
