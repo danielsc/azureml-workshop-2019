@@ -19,10 +19,24 @@ Anyone who wants a comprehensive E2E understanding of Azure ML.
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-configure-environment
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-1st-experiment-sdk-setup
 
-### 10:30-12:30 || Module 2, Datasets, Model Training, Model Interpretability**
+### 10:30-12:30 || Module 2, Datasets, Model Training (AML, HyperDrive and AutoML), Model Interpretability**
+
+##### Notebooks to run and research:
+
+AML training, HyperDrive and Interpretability:
+- [Notebook for plain vanilla Scikit-Learn model training in AML local compute (AML VM)](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/1-scikit-learn-local-training-on-notebook-plus-aml-ds-and-log/binayclassification-employee-attrition-notebook.ipynb) 
+- [Notebook for Scikit-Learn model training in AML remote compute and HyperDrive](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb) 
+- [Notebook for Model Interpretability in AML](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.2-aml-interpretability/1-simple-feature-transformations-explain-local.ipynb)
+
+Automated ML:
+- [Notebook for AutoML local compute](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb)
+- [Notebook for AutoML remote compute](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb)
+
+Complementary tutorials and HowTo:
+
 https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-version-track-datasets
 https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-with-datasets
-https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-machine-learning-interpretability-aml
+
 
 #### **Tutorials for Module 2**
 - https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-train-models-with-aml
