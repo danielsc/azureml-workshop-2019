@@ -11,28 +11,24 @@ Anyone who wants a comprehensive E2E understanding of Azure ML.
 ## Agenda
 
 ### (1 hour) Module 1, infra setup, ARM, workspace setup, computes, datastores, setup**
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-azure-machine-learning-architecture
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-manage-workspace
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-configure-environment
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-1st-experiment-sdk-setup
+1. [Set up your workspace and compute](./1-new-workspace/1-setup-compute.md)
+1. [Register a dataset](./1-new-workspace/2-dataset.md)
+1. [Run AutoML from the UI](./1-new-workspace/3-automl.md)
+1. [Compute Instance - Clone Git Repo](./1-new-workspace/5-clone-git-repo.md)
+
 
 ### (2 hours) Module 2, Datasets, Model Training (AML, HyperDrive and AutoML), Model Interpretability**
 
 ##### Notebooks to run and research:
 
 AML training, HyperDrive and Interpretability:
-- [Notebook for plain vanilla Scikit-Learn model training in AML local compute (AML VM)](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/1-scikit-learn-local-training-on-notebook-plus-aml-ds-and-log/binayclassification-employee-attrition-notebook.ipynb) 
-- [Notebook for Scikit-Learn model training in AML remote compute and HyperDrive](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb) 
-- [Notebook for Model Interpretability in AML](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.2-aml-interpretability/1-simple-feature-transformations-explain-local.ipynb)
+- [Notebook for plain vanilla Scikit-Learn model training in AML local compute (AML VM)](./2-training-and-interpretability/2.1-aml-training-and-hyperdrive/1-scikit-learn-local-training-on-notebook-plus-aml-ds-and-log/binayclassification-employee-attrition-notebook.ipynb) 
+- [Notebook for Scikit-Learn model training in AML remote compute and HyperDrive](./2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb) 
+- [Notebook for Model Interpretability in AML](./2-training-and-interpretability/2.2-aml-interpretability/1-simple-feature-transformations-explain-local.ipynb)
 
 Automated ML:
-- [Notebook for AutoML local compute](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb)
-- [Notebook for AutoML remote compute](https://github.com/danielsc/azureml-workshop-2019/blob/master/2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb)
-
-##### Complementary tutorials and HowTo:
-
-https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-version-track-datasets
-https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-with-datasets
+- [Notebook for AutoML local compute](./2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb)
+- [Notebook for AutoML remote compute]./2-training-and-interpretability/2.1-aml-training-and-hyperdrive/2-scikit-learn-remote-training-on-aml-compute-plus-hyperdrive/binayclassification-employee-attrition-aml-compute-notebook.ipynb)
 
 ##### Stretch Goal for Module 2: Get interpretability working on the scikit-learn training job.**
 
@@ -42,10 +38,10 @@ https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-wit
 - EventGrid https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-event-grid-integration
 
 #### **Tutorials for MLOps**
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-pipeline-batch-scoring-classification
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-deploy-models-with-aml
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-train-deploy-model-cli
-- https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-use-event-grid
+- [Deploy a model](./4-mlops/deploy-attrition-model.ipynb)
+- [Use a model for batch inference](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/parallel-run/tabular-dataset-inference-iris.ipynb)
+- [Train & deploy with the CLI](https://docs.microsoft.com/en-us/azure/machine-learning/service/tutorial-train-deploy-model-cli)
+- [Set up EventGrid automation](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-use-event-grid)
 
 #### Stretch Goal for Module 3 - Set up automated training and deployment on a schedule.
 
