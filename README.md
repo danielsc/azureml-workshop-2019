@@ -11,10 +11,10 @@ Anyone who wants a comprehensive E2E understanding of Azure ML.
 ## Agenda
 
 ### Workspace Concepts: infra setup, ARM, workspace setup, computes, datastores, setup**
-1. [Set up your workspace and compute](./1-new-workspace/1-setup-compute.md)
-1. [Register a dataset](./1-new-workspace/2-dataset.md)
-1. [Run AutoML from the UI](./1-new-workspace/3-automl.md)
-1. [Compute Instance - Clone Git Repo](./1-new-workspace/5-clone-git-repo.md)
+1. [Set up your workspace and compute](./1-workspace-concepts/1-setup-compute.md)
+1. [Register a dataset](./1-workspace-concepts/2-dataset.md)
+1. [Run AutoML from the UI](./1-workspace-concepts/3-automl.md)
+1. [Compute Instance - Clone Git Repo](./1-workspace-concepts/5-clone-git-repo.md)
 
 
 ### Datasets, Model Training (AML, HyperDrive and AutoML), Model Inference**
