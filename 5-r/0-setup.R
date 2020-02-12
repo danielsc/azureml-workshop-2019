@@ -1,17 +1,20 @@
 # +
 ## Installing prerequisites for the R part of the workshop
-# please run this script with
+# Please run this script with:
 #
 #     sudo Rscript 0-setup.R
 # -
 
-# install azureml sdk for R
-install.packages("remotes", repos = "http://cran.rstudio.com")
+# Install the azuremlsdk package
+install.packages('remotes')
 
-remotes::install_github('https://github.com/Azure/azureml-sdk-for-r')
+remotes::install_cran('azuremlsdk', repos = 'https://cloud.r-project.org/')
 
-# other stuff used
+# Install additional packages that will be used in this module
 install.packages(c('data.table', 'caret','kernlab','e1071'))
+
+# Use the azuremlsdk library to install the Python SDK
+azuremlsdk::install_azureml(envname = 'r-reticulate')
 
 
 
