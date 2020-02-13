@@ -8,7 +8,7 @@
 # Install the azuremlsdk package
 install.packages('remotes')
 
-remotes::install_github('https://github.com/Azure/azureml-sdk-for-r')
+remotes::install_cran('azuremlsdk', repos = 'https://cloud.r-project.org/')
 
 # Install additional packages that will be used in this module
 install.packages(c('data.table'))
