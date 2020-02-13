@@ -18,7 +18,9 @@ If you get a `"Would you like to install Miniconda? [Y/n]"` prompt please enter 
 From the "Compute instances" tab in [studio](ml.azure.com), open the "Jupyter" link under "Application URI" to launch Jupyter on your compute instance. Navigate to the `1-explore-r.ipynb` notebook and run through the notebook.
 
 ### Part 2: Train a model on AmlCompute
-From the "Compute instances" tab in [studio](ml.azure.com), open the "RStudio" link under "Application URI" to launch RStudio web interface on your compute instance. Once in RStudio, in the bottom right tab "Files" navigate to `code/` and then where you cloned this repo to, for instance `code/azureml-workshop-2019`. Open `2-train-on-amlcompute.R` and run through the script.
+From the "Compute instances" tab in [studio](ml.azure.com), open the "RStudio" link under "Application URI" to launch RStudio web interface on your compute instance. Once in RStudio, in the bottom right tab "Files" navigate to `code/` and then where you cloned this repo to, for instance `code/azureml-workshop-2019`. Open `2-train-on-amlcompute.R`.
+
+Prior to running the script, set the working directory to the current file location using `setwd(dirname)` or Session -> Set Working Directory -> To Source File Location.
 
 ### Part 3: Deploy the model as a web service
 In RStudio, open `3-deploy-to-cloud.R` and run through this script.
