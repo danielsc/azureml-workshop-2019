@@ -15,7 +15,7 @@ install.packages(c('data.table'))
 
 # Only install the following packages if you want to run the training script train.R locally
 # You will not need these packages if you run train.R on your remote AmlCompute cluster
-install.packages(c('caret','kernlab','e1071'))
+# install.packages(c('caret','kernlab','e1071'))
 
 # Use the azuremlsdk library to install the Python SDK
 azuremlsdk::install_azureml(envname = 'r-reticulate')
