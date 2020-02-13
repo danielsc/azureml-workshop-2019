@@ -1,10 +1,10 @@
 # This script loads a dataset of which the last column is supposed to be the
 # class and logs the accuracy
 
-library("azuremlsdk")
-library("caret")
-library("optparse")
-library('data.table')
+library(azuremlsdk)
+library(caret)
+library(optparse)
+library(data.table)
 
 options <- list(
     make_option(c("-d", "--data"), default='../data/IBM-Employee-Attrition.csv')
@@ -13,9 +13,9 @@ options <- list(
 opt_parser <- OptionParser(option_list = options)
 opt <- parse_args(opt_parser)
 
-print(opt$data)
+attrition_data <- opt$data
 
-all_data <- fread(file.path(opt$data),stringsAsFactors = TRUE)
+all_data <- fread(file.path(attrition_data),stringsAsFactors = TRUE)
 # remove useless fields 
 all_data = within(all_data, rm(EmployeeCount, Over18, StandardHours, EmployeeNumber))
 # make sure attrition is a factor
@@ -46,12 +46,8 @@ predictions <- predict(SVModel, test_data)
 conf_matrix <- confusionMatrix(predictions, test_data$Attrition)
 conf_matrix
 
-current_run <- get_current_run()
-log_metric_to_run('Accuracy', conf_matrix$overall["Accuracy"], current_run)
+log_metric_to_run('Accuracy', conf_matrix$overall["Accuracy"])
 
 dir.create('outputs', showWarnings = FALSE)
-saveRDS(SVModel, file = "./outputs/model.rds")
-message("Model saved")
-
-
-
+saveRDS(SVModel, file = './outputs/model.rds')
+message('Model saved')
