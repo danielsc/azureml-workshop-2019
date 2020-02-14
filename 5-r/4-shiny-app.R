@@ -14,8 +14,8 @@ all_data = within(all_data, rm(EmployeeCount, Over18, StandardHours, EmployeeNum
 for (col in c('Attrition')) 
   set(all_data, j=col, value=as.factor(all_data[[col]]))
 
-# get service from the workspace to refresh the object
-service = ws$webservices$attritionr
+# Get service from the workspace to refresh the object
+service <- get_webservice(ws, name = 'attritionr')
 
 
 # Define UI for slider demo app ----
