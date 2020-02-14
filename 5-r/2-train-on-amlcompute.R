@@ -25,12 +25,18 @@ if (is.null(compute_target)) {
 }
 compute_target
 
+# Define the environment for your training run
+env <- r_environment(name = 'attrition-env', cran_packages = c('kernlab'))
+
+# Register the environment to your workspace
+register_environment(env, ws)
+
 # Define an estimator to specify your training run configuration
 est <- estimator(source_directory = '.',
                  entry_script = 'train.R',
                  script_params = list('--data' = ds$path('attrition/IBM-Employee-Attrition.csv')),
                  compute_target = compute_target,
-                 cran_packages = c('kernlab'),
+                 environment = env
                  )
 
 exp <- experiment(ws, name = 'train-r-script-on-amlcompute')
