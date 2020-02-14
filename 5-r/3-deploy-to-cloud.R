@@ -9,7 +9,9 @@ ws <- load_workspace_from_config()
 
 # Register the model
 model <- register_model(ws, model_path = "outputs", model_name = "attrition-r")
-env <- r_environment(name = "inference_env", cran_packages = c("caret", "optparse", "e1071", "kernlab"))
+
+# Reuse the same environment used for training for inference
+env <- get_environment(ws, name = 'attrition-env')
 
 # Create inference config
 inference_config <- inference_config(
