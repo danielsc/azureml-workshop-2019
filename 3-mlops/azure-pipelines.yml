@@ -30,7 +30,7 @@ steps:
     azureSubscription: $(mlWorkspaceConnection)
     scriptLocation: inlineScript
     inlineScript: 'az ml folder attach -w $(mlWorkspaceName) -g $(resourceGroupName)'
-    workingDirectory: '4-mlops'
+    workingDirectory: '3-mlops'
 
 
 - task: AzureCLI@1
@@ -39,7 +39,7 @@ steps:
     azureSubscription: $(mlWorkspaceConnection)
     scriptLocation: inlineScript
     inlineScript: 'az ml pipeline create --name trainattrition -y training-ml-pipeline.yml'
-    workingDirectory: '4-mlops'
+    workingDirectory: '3-mlops'
 
 - task: AzureCLI@1
   displayName: 'Submit script run'
@@ -47,4 +47,4 @@ steps:
     azureSubscription: $(mlWorkspaceConnection)
     scriptLocation: inlineScript
     inlineScript: 'az ml run submit-script -c train -e test train_explain.py'
-    workingDirectory: '4-mlops'
+    workingDirectory: '3-mlops'
